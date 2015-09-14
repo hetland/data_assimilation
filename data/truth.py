@@ -21,10 +21,17 @@ def truth(x):
 x = np.random.rand(50)
 y = truth(x) + 0.1*np.random.randn(len(x))
 
-print 'saving..'
-np.savetxt('oi_data.dat', np.vstack((x, y)).T)
+# print 'saving..'
+# np.savetxt('oi_data.dat', np.vstack((x, y)).T)
 
+x, y = np.loadtxt('oi_data.dat').T
 
-plt.plot(x, truth(x), 'r+')
+print np.std(y)
+print np.std(y - truth(x))
+
+xx = np.linspace(0, 1, 1000)
+print np.std(truth(xx))
+plt.plot(xx, truth(xx), 'b-')
+plt.plot(x, y, 'ro')
 plt.show()
 
