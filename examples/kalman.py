@@ -4,11 +4,12 @@
 #
 # (c) Robert Hetland, 2006-10-31
 
+from __future__ import print_function
+
 from numpy import *
 
 import matplotlib.pyplot as pl
 import matplotlib.animation as animation
-
 
 #####################
 # Data and data stats
@@ -60,7 +61,7 @@ def oi1d(xmidx,dm,x,bvar,Eo):
     return A.flatten(), Ea
 
 
-fig = pl.figure(figsize=(10, 5))
+fig = pl.figure(figsize=(20, 10))
 ax = fig.add_axes([0.03, 0.05, 0.6, 0.90])
 axp = fig.add_axes([0.68, 0.15, 0.3, 0.65])
 ax.set_ylim(-3, 3)
@@ -112,7 +113,7 @@ line_true, = ax.plot(x, sin((x)*wavenum), '-r')
 line_data, = ax.plot(zeros((M), 'd'), zeros((M), 'd'), 'g.', markersize=10.0)
 line_errp, = ax.plot(x, zeros_like(x), '-', color='0.5')
 line_errm, = ax.plot(x, zeros_like(x), '-', color='0.5')
-pc = axp.imshow(sqrt(abs(P)), vmin=0, vmax=1.0)
+pc = axp.imshow(sqrt(abs(P)), vmin=0, vmax=1.0, cmap='Blues')
 
 def init_line():
     line_w.set_ydata(ma.MaskedArray(w, mask=True))
@@ -163,7 +164,7 @@ def update_line(n):
         wa, Pa = oi1d(xmidx, ai, x, P, Ce)
         w = w+wa
         P = Pa
-        print 'Assimilation cycle at %4.2f, mean error %f' % (t[n], P.diagonal().sum())
+        print('Assimilation cycle at %4.2f, mean error %f' % (t[n], P.diagonal().sum()))
         
         tdata = t[n]
     
