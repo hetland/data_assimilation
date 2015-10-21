@@ -16,12 +16,11 @@ import matplotlib.animation as animation
 
 wavenum = 50.0                      # Wavenumber of 'truth'
 
-Ce = 0.5                            # Data error varience (diagonal Ce)
+Ce = 5.0                            # Data error varience (diagonal Ce)
 Ro = pi/wavenum                     # Radius of influence
 c_data = 1.0                        # Data phase speed
                                     
-M = 50                              # Number of data points
-N = 10                              # Number of data times
+M = 150                              # Number of data points
                                     
 T = 5.0                             # time of integration
 Tassim = 0.05                       # assimilation time preiod
@@ -33,7 +32,7 @@ c  = 1.0                            # Phase speed
 kappa = 0.0001                       # diffusion (for numerical stability)
 
 Qfo = 0.5                           # Forcing error variance
-Qb = 50.0                             # Boundary condition error variance
+Qb = 1.0                             # Boundary condition error variance
 
 ######################
 
@@ -79,7 +78,8 @@ t = arange(dt,T+dt,dt)
 assimn = int(Tassim/dt)
 
 # Set up measurement locations
-# xidx = arange(50, 75)
+# xidx = arange(50, 125)
+# xidx[:10] = arange(10, 200, 20)
 # xidx = arange(50, len(x)-50)
 xidx = arange(len(x))
 random.shuffle(xidx)

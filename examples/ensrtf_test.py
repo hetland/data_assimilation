@@ -15,7 +15,7 @@ Nspinup = 100               # number of steps to spin up models
 
 Nassim = 5                  # timesteps between assimilation cycles
 
-obs_std  = 5.0              # standard error of observations
+obs_std  = 0.5              # standard error of observations
 obs_var = obs_std**2
 corr_length_scale = 5.0     # correlation filter length scale
 
@@ -87,7 +87,7 @@ for nt in range(Nspinup): # spinup
 
 
 # Set up figure and initialize lines on plot
-fig = plt.figure(figsize=(10, 5))
+fig = plt.figure(figsize=(20, 10))
 ax = fig.add_axes([0.05, 0.05, 0.9, 0.90])
 
 lines_en = ax.plot(np.zeros((Npoints, Nenembles), 'd'), '-k', lw=0.5, alpha=0.25)
